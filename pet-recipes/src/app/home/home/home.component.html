@@ -1,0 +1,17 @@
+<div class="home">
+    <h1 class="title">Meet Our Adorable Pets!</h1>
+    <div class="pet-gallery">
+      <div class="pet-card" *ngFor="let pet of pets$ | async">
+        <div class="image-container">
+          <img [src]="pet.imageUrl" [alt]="pet.name" class="pet-image" />
+        </div>
+        <div class="pet-details">
+          <h2 class="pet-name">{{ pet.name }}</h2>
+          <p class="pet-type">{{ pet.type }}</p>
+          <p class="pet-age">Age: {{ pet.age }} years</p>
+          <p class="pet-description">{{ pet.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
