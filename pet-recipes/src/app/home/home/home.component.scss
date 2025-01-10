@@ -1,7 +1,7 @@
 .home {
   text-align: center;
   padding: 20px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 
   .pet-gallery {
     display: flex;
@@ -82,6 +82,63 @@
           transform: scale(1.05); // Slight zoom on hover
         }
       }
+    }
+  }
+}
+
+.mini-game {
+  margin-top: 40px;
+  text-align: center;
+
+  .game-area {
+    position: relative;
+    width: 620px;
+    height: 500px;
+    margin: 0 auto;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #fff, #fff);
+    overflow: hidden;
+    position: relative;
+
+    .cat,
+    .dog {
+      width: 75px;
+      height: 75px;
+      position: absolute;
+      transition: transform 0.2s ease, left 0.1s ease, top 0.1s ease;
+    }
+
+    .cat {
+      width: 50px;
+      height: 50px;
+      background: url("../../../assets/images/pets/cat.svg") no-repeat center /
+        contain;
+      &.angry {
+        background: url("../../../assets/images/pets/rage.svg") no-repeat center /
+          contain;
+        animation: angry-shake 0.5s infinite alternate; // Shake animation when angry
+      }
+    }
+    .dog {
+      background: url("../../../assets/images/pets/dog-icon.svg") no-repeat
+        center / contain;
+    }
+  }
+
+  button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff7e67;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #ff5945;
     }
   }
 }

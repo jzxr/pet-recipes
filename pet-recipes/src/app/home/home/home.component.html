@@ -24,4 +24,24 @@
       </div>
     </div>
   </div>
+  <div>
+    <!-- Mini-Game Section -->
+    <div class="mini-game">
+      <h2>Mini-Game: Catch the Cat!</h2>
+      <div class="game-area">
+        <div
+        class="cat"
+        [class.angry]="isCaught"
+        [style.left.px]="catPosition.x"
+        [style.top.px]="catPosition.y"
+      ></div>
+      <div
+        class="dog"
+        [style.left.px]="dogPosition.x"
+        [style.top.px]="dogPosition.y"
+      ></div>
+    </div>
+    <button (click)="resetGame()">Reset Game</button>
+    </div>
+  </div>
 </div>
