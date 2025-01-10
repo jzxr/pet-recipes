@@ -5,12 +5,12 @@ export class Cat extends Pet {
   constructor(
     id: number,
     name: string,
-    age: number,
+    birthDate: string,
     description: string,
     imageUrl: string,
     public favoriteToy: string
   ) {
-    super(id, name, 'Cat', age, description, imageUrl);
+    super(id, name, 'Cat', birthDate, description, imageUrl);
   }
 
   meow(): string {

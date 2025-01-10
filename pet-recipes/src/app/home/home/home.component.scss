@@ -1,15 +1,7 @@
 .home {
   text-align: center;
   padding: 20px;
-  background-color: #fdf7f2;
-
-  .title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #ff6f61;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-  }
+  font-family: 'Poppins', sans-serif;
 
   .pet-gallery {
     display: flex;
@@ -19,62 +11,76 @@
   }
 
   .pet-card {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    perspective: 1200px;
     width: 300px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 400px;
 
-    &:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-    }
+    .card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
 
-    .image-container {
-      height: 200px;
-      overflow: hidden;
-      border-bottom: 2px solid #ff6f61;
-
-      .pet-image {
+      .card-front,
+      .card-back {
+        position: absolute;
         width: 100%;
         height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s ease;
+        backface-visibility: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
 
-      &:hover .pet-image {
-        transform: scale(1.1);
+      .card-front {
+        background: linear-gradient(135deg, #ffefff, #ffe6e9);
       }
-    }
 
-    .pet-details {
-      padding: 15px;
-      text-align: left;
+      .card-back {
+        background: linear-gradient(135deg, #ffefff, #ffe6e9);
+        transform: rotateY(180deg);
+      }
 
-      .pet-name {
+      img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%; // Perfect circular images
+        border: 5px solid #ffffff; // White border around the image
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Subtle shadow for anime look
+        margin-bottom: 15px;
+        object-fit: cover; // Ensures images fit perfectly inside the circle
+      }
+
+      h3 {
         font-size: 1.5rem;
         color: #333;
-        font-weight: bold;
-        margin-bottom: 5px;
       }
 
-      .pet-type {
-        font-size: 1.2rem;
-        color: #ff6f61;
-        font-weight: 500;
-        margin-bottom: 5px;
-      }
-
-      .pet-age {
+      p {
         font-size: 1rem;
         color: #555;
-        margin-bottom: 10px;
       }
-
-      .pet-description {
+      .action {
+        margin-top: 20px;
+        padding: 10px 15px;
         font-size: 0.9rem;
-        color: #777;
+        font-weight: bold;
+        border-radius: 25px;
+        background: #ff85a1;
+        color: #fff;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(255, 133, 161, 0.5); // Button glow effect
+        transition: background 0.3s ease, transform 0.2s;
+
+        &:hover {
+          background: #ff678a;
+          transform: scale(1.05); // Slight zoom on hover
+        }
       }
     }
   }

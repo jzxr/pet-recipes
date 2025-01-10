@@ -1,17 +1,27 @@
 <div class="home">
-    <h1 class="title">Meet Our Adorable Pets!</h1>
-    <div class="pet-gallery">
-      <div class="pet-card" *ngFor="let pet of pets$ | async">
-        <div class="image-container">
-          <img [src]="pet.imageUrl" [alt]="pet.name" class="pet-image" />
+  <h1>Welcome to the Cute Pet Gallery</h1>
+  <div class="pet-gallery">
+    <div
+      class="pet-card"
+      *ngFor="let pet of pets$ | async; trackBy: trackById"
+      (click)="toggleCard(pet)"
+    >
+      <div class="card" [@flipCard]="pet.state">
+        <!-- Front of the card -->
+        <div class="card-front">
+          <img [src]="pet.imageUrl" [alt]="pet.name" />
+          <h3>{{ pet.name }}</h3>
+
+          <div class="action">More Details about {{ pet.name }}</div>
         </div>
-        <div class="pet-details">
-          <h2 class="pet-name">{{ pet.name }}</h2>
-          <p class="pet-type">{{ pet.type }}</p>
-          <p class="pet-age">Age: {{ pet.age }} years</p>
-          <p class="pet-description">{{ pet.description }}</p>
+        <!-- Back of the card -->
+        <div class="card-back">
+          <img [src]="pet.imageUrl" [alt]="pet.name" />
+          <h3>{{ pet.name }}</h3>
+          <p>{{ pet.description }}</p>
+          <p>Age: {{ calculateAge(pet.birthDate) }}</p>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

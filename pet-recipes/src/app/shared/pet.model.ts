@@ -3,12 +3,12 @@ export class Pet {
     public id: number,
     public name: string,
     public type: string,
-    public age: number,
+    public birthDate: string,
     public description: string,
     public imageUrl: string
   ) {}
 
   getPetInfo(): string {
-    return `${this.name} is a ${this.age}-year-old ${this.type}.`;
+    return `${this.name} is a ${this.birthDate}-year-old ${this.type}.`;
   }
 }

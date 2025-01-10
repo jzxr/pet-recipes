@@ -4,12 +4,12 @@ export class Dog extends Pet {
   constructor(
     id: number,
     name: string,
-    age: number,
+    birthDate: string,
     description: string,
     imageUrl: string,
     public breed: string
   ) {
-    super(id, name, 'Dog', age, description, imageUrl);
+    super(id, name, 'Dog', birthDate, description, imageUrl);
   }
 
   bark(): string {

@@ -12,16 +12,16 @@ export class PetService {
     new Dog(
       1,
       'Naixi',
-      2,
-      'Loves fetch.',
+      '2022-03-13',
+      'A playful Pomeranian!',
       '../../../assets/images/pets/naixi.jpg',
       'Pomeranian'
     ),
     new Cat(
       2,
       'Lily',
-      1,
-      'Curious cat.',
+      '2024-08-02',
+      'A curious Maine Coon and Ragdoll mix.',
       'assets/images/pets/lily.jpg',
       'Feather Wand'
     ),
