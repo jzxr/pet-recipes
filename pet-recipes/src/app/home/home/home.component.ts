@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { PetService } from '../../services/pet/pet.service';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Pet } from '../../shared/pet.model';
@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private petsSubject = new BehaviorSubject<AnimatablePet[]>([]);
   pets$ = this.petsSubject.asObservable();
   isCaught = false;
-  catPosition = { x: 300, y: 150 };
+  catPosition = { x: 550, y: 150 };
   dogPosition = { x: 100, y: 150 };
   private gameInterval: any;
 
@@ -101,19 +101,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dogPosition.y += (dy / distance) * stepSize;
   }
 
-  moveCat() {
-    if (this.isCaught) return;
-
-    const randomX = Math.random() * 450;
-    const randomY = Math.random() * 250;
-    this.catPosition.x = randomX;
-    this.catPosition.y = randomY;
-  }
   startGame() {
     this.isCaught = false;
     this.gameInterval = setInterval(() => {
       this.moveDog();
-      if (!this.isCaught) this.moveCat();
     }, 500);
   }
 
@@ -124,7 +115,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   resetGame() {
     this.stopGame();
-    this.catPosition = { x: 300, y: 150 };
+    this.catPosition = { x: 550, y: 150 };
     this.dogPosition = { x: 100, y: 150 };
     this.startGame();
   }
@@ -135,5 +126,27 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.stopGame(); // Ensure the interval is cleared when the component is destroyed
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    const stepSize = 20; // Distance the cat moves per key press
+
+    if (this.isCaught) return;
+
+    switch (event.key) {
+      case 'ArrowUp':
+        this.catPosition.y = Math.max(0, this.catPosition.y - stepSize);
+        break;
+      case 'ArrowDown':
+        this.catPosition.y = Math.min(250, this.catPosition.y + stepSize);
+        break;
+      case 'ArrowLeft':
+        this.catPosition.x = Math.max(0, this.catPosition.x - stepSize);
+        break;
+      case 'ArrowRight':
+        this.catPosition.x = Math.min(450, this.catPosition.x + stepSize);
+        break;
+    }
   }
 }
